@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-top: 30px;
+}
+
+.left {
+  margin: 0px 70px;
+  /* padding: 0px 50px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.left > p {
+  margin-bottom: 10px;
+}
+
+img {
+  height: 20px;
+}
+
+button {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-size: 18px;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+form > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.right {
+  background-color: #f9f9f9;
+  margin: 20px 70px 20px 70px;
+  width: 100%;
+  color: black;
+}
+
+@media screen and (max-width: 1070px) {
+  .container {
+    flex-flow: wrap;
+    overflow: auto;
+  }
+}
