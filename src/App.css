@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 h1 {
@@ -9,8 +9,9 @@ h1 {
 }
 
 .left {
+  flex-grow: 1;
+  flex-basis: 300px;
   margin: 0px 70px;
-  /* padding: 0px 50px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,15 +52,23 @@ form > div {
 }
 
 .right {
+  max-width: 100%;
   background-color: #f9f9f9;
   margin: 20px 70px 20px 70px;
-  width: 100%;
+  width: 90vw;
   color: black;
 }
 
 @media screen and (max-width: 1070px) {
   .container {
-    flex-flow: wrap;
-    overflow: auto;
+    flex-direction: column;
+  }
+  .left {
+    margin: 0px 20px;
+  }
+  .right {
+    align-self: center;
+    height: 60vh;
+    margin: 20px;
   }
 }
