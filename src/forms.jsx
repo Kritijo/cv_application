@@ -1,110 +1,238 @@
-import { useState } from "react";
+export function PersonalForm({ form, setForm }) {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm((prevForm) => ({
+            ...prevForm,
+            [name]: value,
+        }));
+    };
 
-export function PersonalForm() {
     return (
         <form>
             <div>
                 <label htmlFor="name">Name</label>
-                <input id="name" type="text" autoComplete="name"></input>
+                <input
+                    name="name"
+                    id="name"
+                    type="text"
+                    autoComplete="name"
+                    value={form.name}
+                    onChange={handleChange}
+                />
             </div>
             <div>
                 <label htmlFor="address">Address</label>
                 <input
+                    name="address"
                     id="address"
                     type="text"
                     autoComplete="address-line1"
-                ></input>
+                    value={form.address}
+                    onChange={handleChange}
+                />
             </div>
             <div>
                 <label htmlFor="number">Phone number</label>
-                <input id="number" type="tel"></input>
+                <input
+                    name="number"
+                    id="number"
+                    type="tel"
+                    value={form.number}
+                    onChange={handleChange}
+                />
             </div>
             <div>
                 <label htmlFor="email">Email</label>
-                <input id="email" type="email" autoComplete="email"></input>
+                <input
+                    name="email"
+                    id="email"
+                    type="email"
+                    autoComplete="email"
+                    value={form.email}
+                    onChange={handleChange}
+                />
             </div>
             <div>
                 <label htmlFor="linkedIn">LinkedIn</label>
-                <input id="linkedIn" type="text"></input>
+                <input
+                    name="linkedIn"
+                    id="linkedIn"
+                    type="text"
+                    value={form.linkedIn}
+                    onChange={handleChange}
+                />
             </div>
             <div>
                 <label htmlFor="github">Github</label>
-                <input id="github" type="tel"></input>
+                <input
+                    name="github"
+                    id="github"
+                    type="text"
+                    value={form.github}
+                    onChange={handleChange}
+                />
             </div>
         </form>
     );
 }
 
-export function EducationForm() {
+export function EducationForm({ form, setForm }) {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm((prevForm) => ({
+            ...prevForm,
+            [name]: value,
+        }));
+    };
+
     return (
         <form>
             <div>
                 <label htmlFor="college">College</label>
-                <input id="college" type="text"></input>
+                <input
+                    name="college"
+                    id="college"
+                    type="text"
+                    value={form.college}
+                    onChange={handleChange}
+                ></input>
             </div>
             <div>
                 <label htmlFor="degree">Degree</label>
-                <input id="degree" type="text"></input>
+                <input
+                    name="degree"
+                    id="degree"
+                    type="text"
+                    value={form.degree}
+                    onChange={handleChange}
+                ></input>
             </div>
             <div>
                 <label htmlFor="cgpa">CGPA</label>
-                <input id="cgpa" type="number"></input>
+                <input
+                    name="cgpa"
+                    id="cgpa"
+                    type="number"
+                    value={form.cgpa}
+                    onChange={handleChange}
+                ></input>
             </div>
             <div>
                 <label htmlFor="from">From</label>
-                <input id="from" type="date" autoComplete="email"></input>
+                <input
+                    name="from"
+                    id="from"
+                    type="date"
+                    autoComplete="off"
+                    value={form.from}
+                    onChange={handleChange}
+                ></input>
             </div>
             <div>
                 <label htmlFor="to">To</label>
-                <input id="to" type="date"></input>
+                <input
+                    name="to"
+                    id="to"
+                    type="date"
+                    autoComplete="off"
+                    value={form.to}
+                    onChange={handleChange}
+                ></input>
             </div>
         </form>
     );
 }
 
-export function ExperienceForm() {
-    const [experiences, setExperiences] = useState([
-        { company: "", position: "", description: "", from: "", to: "" },
-    ]);
-
+export function ExperienceForm({ form, setForm }) {
     const addExperience = () => {
-        setExperiences([
-            ...experiences,
+        setForm((prevForm) => [
+            ...prevForm,
             { company: "", position: "", description: "", from: "", to: "" },
         ]);
     };
 
+    const handleChange = (e) => {
+        const { name, value, dataset } = e.target;
+        const index = dataset.index;
+
+        setForm((prevForm) => {
+            const updatedForm = [...prevForm];
+            updatedForm[index] = { ...updatedForm[index], [name]: value };
+            return updatedForm;
+        });
+    };
+
     return (
         <>
-            {experiences.map((_, index) => (
+            {form.map((experience, index) => (
                 <form key={index}>
                     <div>
                         <label htmlFor={`company-${index}`}>Company Name</label>
-                        <input id={`company-${index}`} type="text" />
+                        <input
+                            id={`company-${index}`}
+                            type="text"
+                            name="company"
+                            autoComplete="off"
+                            value={experience.company}
+                            onChange={handleChange}
+                            data-index={index}
+                        />
                     </div>
                     <div>
                         <label htmlFor={`position-${index}`}>
                             Position Title
                         </label>
-                        <input id={`position-${index}`} type="text" />
+                        <input
+                            id={`position-${index}`}
+                            type="text"
+                            name="position"
+                            autoComplete="off"
+                            value={experience.position}
+                            onChange={handleChange}
+                            data-index={index}
+                        />
                     </div>
                     <div>
                         <label htmlFor={`description-${index}`}>
                             Description
                         </label>
-                        <input id={`description-${index}`} type="text" />
+                        <input
+                            id={`description-${index}`}
+                            type="text"
+                            name="description"
+                            autoComplete="off"
+                            value={experience.description}
+                            onChange={handleChange}
+                            data-index={index}
+                        />
                     </div>
                     <div>
                         <label htmlFor={`from-${index}`}>From</label>
-                        <input id={`from-${index}`} type="date" />
+                        <input
+                            id={`from-${index}`}
+                            type="date"
+                            name="from"
+                            autoComplete="off"
+                            value={experience.from}
+                            onChange={handleChange}
+                            data-index={index}
+                        />
                     </div>
                     <div>
                         <label htmlFor={`to-${index}`}>To</label>
-                        <input id={`to-${index}`} type="date" />
+                        <input
+                            id={`to-${index}`}
+                            type="date"
+                            name="to"
+                            autoComplete="off"
+                            value={experience.to}
+                            onChange={handleChange}
+                            data-index={index}
+                        />
                     </div>
                 </form>
             ))}
-            {experiences.length < 2 && (
+            {form.length < 2 && (
                 <button
                     type="button"
                     onClick={addExperience}
