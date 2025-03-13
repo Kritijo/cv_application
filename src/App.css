@@ -57,6 +57,12 @@ form > div {
   margin: 20px 70px 20px 70px;
   width: 90vw;
   color: black;
+  padding: 30px;
+}
+
+.personal > h2{
+  text-align: center;
+  font-size: 30px;
 }
 
 @media screen and (max-width: 1070px) {

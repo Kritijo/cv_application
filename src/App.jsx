@@ -75,13 +75,11 @@ function HandleButtons({ formProps }) {
 function PersonalData({ form }) {
     return (
         <>
-            <div>
+            <div className="personal">
                 <h2>{form.name}</h2>
-                <p>{form.address}</p>
                 <p>{form.number}</p>
                 <p>{form.email}</p>
                 <p>{form.linkedIn}</p>
-                <p>{form.github}</p>
             </div>
         </>
     );
@@ -122,11 +120,9 @@ function ExperienceData({ form }) {
 function App() {
     const [personalData, setPersonalData] = useState({
         name: "",
-        address: "",
         number: "",
         email: "",
         linkedIn: "",
-        github: "",
     });
     const [educationData, seteducationData] = useState({
         college: "",

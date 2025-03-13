@@ -21,17 +21,6 @@ export function PersonalForm({ form, setForm }) {
                 />
             </div>
             <div>
-                <label htmlFor="address">Address</label>
-                <input
-                    name="address"
-                    id="address"
-                    type="text"
-                    autoComplete="address-line1"
-                    value={form.address}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
                 <label htmlFor="number">Phone number</label>
                 <input
                     name="number"
@@ -59,16 +48,6 @@ export function PersonalForm({ form, setForm }) {
                     id="linkedIn"
                     type="text"
                     value={form.linkedIn}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="github">Github</label>
-                <input
-                    name="github"
-                    id="github"
-                    type="text"
-                    value={form.github}
                     onChange={handleChange}
                 />
             </div>
