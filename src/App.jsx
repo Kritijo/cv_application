@@ -123,21 +123,51 @@ function ExperienceForm() {
     );
 }
 
-function Button({ name, img, formComponent }) {
-    const [showForm, setShowForm] = useState(false);
-
-    const toggle = () => {
-        setShowForm(!showForm);
+function Button({ name, img, formComponent, isActive, setisActive }) {
+    const handleClick = () => {
+        isActive===name ? setisActive("") :setisActive(name);
     };
+    
+    const active = isActive === name;
 
     return (
         <>
-            <button onClick={toggle}>
+            <button onClick={handleClick}>
                 <img src={img} />
                 {name}
-                {showForm ? <img src={minus} /> : <img src={plus} />}
+                {active ? <img src={minus} /> : <img src={plus} />}
             </button>
-            {showForm && formComponent}
+            {active && formComponent}
+        </>
+    );
+}
+
+function HandleButtons() {
+    const [isActive, setisActive] = useState("");
+
+    return (
+        <>
+            <Button
+                name="Personal"
+                img={personal}
+                formComponent={<PersonalForm />}
+                isActive={isActive}
+                setisActive={setisActive}
+            />
+            <Button
+                name="Education"
+                img={education}
+                formComponent={<EducationForm />}
+                isActive={isActive}
+                setisActive={setisActive}
+            />
+            <Button
+                name="Experience"
+                img={experience}
+                formComponent={<ExperienceForm />}
+                isActive={isActive}
+                setisActive={setisActive}
+            />
         </>
     );
 }
@@ -148,21 +178,7 @@ function App() {
             <div className="left">
                 <h1>CV Generator</h1>
                 <p>Fill in the details below</p>
-                <Button
-                    name="Personal Details"
-                    img={personal}
-                    formComponent={<PersonalForm />}
-                />
-                <Button
-                    name="Education"
-                    img={education}
-                    formComponent={<EducationForm />}
-                />
-                <Button
-                    name="Experience"
-                    img={experience}
-                    formComponent={<ExperienceForm />}
-                />
+                <HandleButtons />
             </div>
             <div className="right"></div>
         </div>
