@@ -34,9 +34,15 @@ button {
   font-size: 18px;
 }
 
+.addFieldBttn {
+  width: 200px;
+  justify-content: center;
+}
+
 form {
   display: grid;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 form > div {

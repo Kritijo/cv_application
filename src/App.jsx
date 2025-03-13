@@ -69,29 +69,57 @@ function EducationForm() {
 }
 
 function ExperienceForm() {
+    const [experiences, setExperiences] = useState([
+        { company: "", position: "", description: "", from: "", to: "" },
+    ]);
+
+    const addExperience = () => {
+        setExperiences([
+            ...experiences,
+            { company: "", position: "", description: "", from: "", to: "" },
+        ]);
+    };
+
     return (
-        <form>
-            <div>
-                <label htmlFor="company">Comany Name</label>
-                <input id="company" type="text"></input>
-            </div>
-            <div>
-                <label htmlFor="position">Position Title</label>
-                <input id="position" type="text"></input>
-            </div>
-            <div>
-                <label htmlFor="description">Description</label>
-                <input id="description" type="text"></input>
-            </div>
-            <div>
-                <label htmlFor="from">From</label>
-                <input id="from" type="date" autoComplete="email"></input>
-            </div>
-            <div>
-                <label htmlFor="to">To</label>
-                <input id="to" type="date"></input>
-            </div>
-        </form>
+        <>
+            {experiences.map((_, index) => (
+                <form key={index}>
+                    <div>
+                        <label htmlFor={`company-${index}`}>Company Name</label>
+                        <input id={`company-${index}`} type="text" />
+                    </div>
+                    <div>
+                        <label htmlFor={`position-${index}`}>
+                            Position Title
+                        </label>
+                        <input id={`position-${index}`} type="text" />
+                    </div>
+                    <div>
+                        <label htmlFor={`description-${index}`}>
+                            Description
+                        </label>
+                        <input id={`description-${index}`} type="text" />
+                    </div>
+                    <div>
+                        <label htmlFor={`from-${index}`}>From</label>
+                        <input id={`from-${index}`} type="date" />
+                    </div>
+                    <div>
+                        <label htmlFor={`to-${index}`}>To</label>
+                        <input id={`to-${index}`} type="date" />
+                    </div>
+                </form>
+            ))}
+            {experiences.length < 2 && (
+                <button
+                    type="button"
+                    onClick={addExperience}
+                    className="addFieldBttn"
+                >
+                    Add More
+                </button>
+            )}
+        </>
     );
 }
 
