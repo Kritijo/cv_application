@@ -158,29 +158,41 @@ export function ExperienceForm({ form, setForm }) {
                         />
                     </div>
                     <div>
-                        <label htmlFor={`position-${index}`}>
-                            Position Title
-                        </label>
+                        <label htmlFor={`role-${index}`}>Role</label>
                         <input
-                            id={`position-${index}`}
+                            id={`role-${index}`}
                             type="text"
-                            name="position"
+                            name="role"
                             autoComplete="off"
-                            value={experience.position}
+                            value={experience.role}
                             onChange={handleChange}
                             data-index={index}
                         />
                     </div>
                     <div>
-                        <label htmlFor={`description-${index}`}>
-                            Description
+                        <label htmlFor={`description1-${index}`}>
+                            Description 1
                         </label>
                         <input
-                            id={`description-${index}`}
+                            id={`description1-${index}`}
                             type="text"
-                            name="description"
+                            name="description1"
                             autoComplete="off"
-                            value={experience.description}
+                            value={experience.description1}
+                            onChange={handleChange}
+                            data-index={index}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor={`description2-${index}`}>
+                            Description 2
+                        </label>
+                        <input
+                            id={`description2-${index}`}
+                            type="text"
+                            name="description2"
+                            autoComplete="off"
+                            value={experience.description2}
                             onChange={handleChange}
                             data-index={index}
                         />

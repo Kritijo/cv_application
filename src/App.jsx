@@ -77,39 +77,79 @@ function PersonalData({ form }) {
         <>
             <div className="personal">
                 <h2>{form.name}</h2>
-                <p>{form.number}</p>
-                <p>{form.email}</p>
-                <p>{form.linkedIn}</p>
+                <div>
+                    <p>{form.number}</p>•<p>{form.email}</p>•
+                    <p>{form.linkedIn}</p>
+                </div>
             </div>
         </>
     );
 }
 
 function EducationalData({ form }) {
+    function formatDateToMonthYear(dateString) {
+        if (!dateString) return "";
+        const date = new Date(dateString);
+        return date.toLocaleDateString("en-US", {
+            month: "short",
+            year: "numeric",
+        });
+    }
+
     return (
         <>
-            <div>
-                <h2>{form.college}</h2>
-                <p>{form.degree}</p>
-                <p>{form.cgpa}</p>
-                <p>{form.from}</p>
-                <p>{form.to}</p>
+            <h2 className="education-heading">EDUCATION</h2>
+            <div className="education">
+                <div>
+                    <p className="degree">
+                        <i>{form.degree}</i>
+                    </p>
+                    <p>{form.college}</p>
+                </div>
+                <div>
+                    <p>
+                        <i>
+                            {formatDateToMonthYear(form.from)} -{" "}
+                            {formatDateToMonthYear(form.to)}
+                        </i>
+                    </p>
+                    <p className="cgpa">CGPA: {form.cgpa}</p>
+                </div>
             </div>
         </>
     );
 }
 function ExperienceData({ form }) {
+    function formatDateToMonthYear(dateString) {
+        if (!dateString) return "";
+        const date = new Date(dateString);
+        return date.toLocaleDateString("en-US", {
+            month: "short",
+            year: "numeric",
+        });
+    }
     return (
         <>
-            <div>
+            <h2 className="experience-heading">EXPERIENCE</h2>
+            <div className="experience">
                 {form.map((exp, idx) => (
-                    <div key={idx}>
-                        <h2>{exp.company}</h2>
-                        <p>{exp.position}</p>
-                        <p>{exp.description}</p>
-                        <p>
-                            {exp.from} {exp.to}
-                        </p>
+                    <div className="exp-div" key={idx}>
+                        <div>
+                            <p className="role">
+                                <i>{exp.role}</i>
+                            </p>
+                            <p>
+                                <i>
+                                    {formatDateToMonthYear(exp.from)} -{" "}
+                                    {formatDateToMonthYear(exp.to)}
+                                </i>
+                            </p>
+                        </div>
+                        <p>{exp.company}</p>
+                        <ul>
+                            <li>{exp.description1}</li>
+                            <li>{exp.description2}</li>
+                        </ul>
                     </div>
                 ))}
             </div>
@@ -119,25 +159,38 @@ function ExperienceData({ form }) {
 
 function App() {
     const [personalData, setPersonalData] = useState({
-        name: "",
-        number: "",
-        email: "",
-        linkedIn: "",
+        name: "Your name",
+        number: "7283792730",
+        email: "email@domain.com",
+        linkedIn: "linkedIn",
     });
     const [educationData, seteducationData] = useState({
-        college: "",
-        degree: "",
-        cgpa: "",
-        from: "",
-        to: "",
+        degree: "Bachelor of Engineering, Computer Science",
+        college: "Example University",
+        from: "2021-08-01",
+        to: "2025-05-01",
+        cgpa: "8.9",
     });
     const [experienceData, setexperienceData] = useState([
         {
-            company: "",
-            role: "",
-            desc: "",
-            from: "",
-            to: "",
+            role: "Software Engineer Intern",
+            company: "XYZ",
+            description1:
+                "Worked with product managers to re-architect a multi-page web app into a single page web-app, boosting yearly revenue by $1.4M.",
+            description2:
+                "Improved application performance and reduced load time by 30% through code-splitting and lazy loading.",
+            from: "2022-02-14",
+            to: "2022-09-10",
+        },
+        {
+            role: "Software Engineer Intern",
+            company: "ABC",
+            description1:
+                "Worked with product managers to re-architect a multi-page web app into a single page web-app, boosting yearly revenue by $1.4M.",
+            description2:
+                "Improved application performance and reduced load time by 30% through code-splitting and lazy loading.",
+            from: "2022-02-14",
+            to: "2022-09-10",
         },
     ]);
 
