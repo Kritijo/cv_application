@@ -6,9 +6,7 @@ import plus from "./assets/plus.svg";
 import minus from "./assets/minus.svg";
 import "./App.css";
 
-function PersonalForm({ showForm }) {
-    if (!showForm) return null;
-
+function PersonalForm() {
     return (
         <form>
             <div>
@@ -43,7 +41,61 @@ function PersonalForm({ showForm }) {
     );
 }
 
-function Button({ name, img }) {
+function EducationForm() {
+    return (
+        <form>
+            <div>
+                <label htmlFor="college">College</label>
+                <input id="college" type="text"></input>
+            </div>
+            <div>
+                <label htmlFor="degree">Degree</label>
+                <input id="degree" type="text"></input>
+            </div>
+            <div>
+                <label htmlFor="cgpa">CGPA</label>
+                <input id="cgpa" type="number"></input>
+            </div>
+            <div>
+                <label htmlFor="from">From</label>
+                <input id="from" type="date" autoComplete="email"></input>
+            </div>
+            <div>
+                <label htmlFor="to">To</label>
+                <input id="to" type="date"></input>
+            </div>
+        </form>
+    );
+}
+
+function ExperienceForm() {
+    return (
+        <form>
+            <div>
+                <label htmlFor="company">Comany Name</label>
+                <input id="company" type="text"></input>
+            </div>
+            <div>
+                <label htmlFor="position">Position Title</label>
+                <input id="position" type="text"></input>
+            </div>
+            <div>
+                <label htmlFor="description">Description</label>
+                <input id="description" type="text"></input>
+            </div>
+            <div>
+                <label htmlFor="from">From</label>
+                <input id="from" type="date" autoComplete="email"></input>
+            </div>
+            <div>
+                <label htmlFor="to">To</label>
+                <input id="to" type="date"></input>
+            </div>
+        </form>
+    );
+}
+
+function Button({ name, img, formComponent }) {
     const [showForm, setShowForm] = useState(false);
 
     const toggle = () => {
@@ -57,7 +109,7 @@ function Button({ name, img }) {
                 {name}
                 {showForm ? <img src={minus} /> : <img src={plus} />}
             </button>
-            <PersonalForm showForm={showForm} />
+            {showForm && formComponent}
         </>
     );
 }
@@ -68,9 +120,21 @@ function App() {
             <div className="left">
                 <h1>CV Generator</h1>
                 <p>Fill in the details below</p>
-                <Button name="Personal Details" img={personal} />
-                <Button name="Education" img={education} />
-                <Button name="Experience" img={experience} />
+                <Button
+                    name="Personal Details"
+                    img={personal}
+                    formComponent={<PersonalForm />}
+                />
+                <Button
+                    name="Education"
+                    img={education}
+                    formComponent={<EducationForm />}
+                />
+                <Button
+                    name="Experience"
+                    img={experience}
+                    formComponent={<ExperienceForm />}
+                />
             </div>
             <div className="right"></div>
         </div>
