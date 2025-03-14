@@ -236,7 +236,75 @@ export function ExperienceForm({ form, setForm }) {
     );
 }
 
-export function ProjectForm({ form, setForm }) {}
+export function ProjectForm({ form, setForm }) {
+    const handleChange = (e) => {
+        const { name, value, dataset } = e.target;
+        const index = dataset.index;
+
+        setForm((prevForm) => {
+            const updatedForm = [...prevForm];
+            updatedForm[index] = { ...updatedForm[index], [name]: value };
+            return updatedForm;
+        });
+    };
+
+    return (
+        <>
+            {form.map((project, index) => (
+                <form key={index}>
+                    <div>
+                        <label htmlFor={`projectName-${index}`}>Project</label>
+                        <input
+                            name="projectName"
+                            type="text"
+                            id={`projectName-${index}`}
+                            value={project.projectName}
+                            data-index={index}
+                            onChange={handleChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label htmlFor={`link-${index}`}>Link</label>
+                        <input
+                            name="link"
+                            type="text"
+                            id={`link-${index}`}
+                            value={project.link}
+                            data-index={index}
+                            onChange={handleChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label htmlFor={`description1-${index}`}>
+                            Description 1
+                        </label>
+                        <input
+                            name="description1"
+                            type="text"
+                            id={`description1-${index}`}
+                            value={project.description1}
+                            data-index={index}
+                            onChange={handleChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label htmlFor={`description2-${index}`}>
+                            Description 2
+                        </label>
+                        <input
+                            name="description2"
+                            type="text"
+                            id={`description2-${index}`}
+                            value={project.description2}
+                            data-index={index}
+                            onChange={handleChange}
+                        ></input>
+                    </div>
+                </form>
+            ))}
+        </>
+    );
+}
 
 export function SkillsForm({ form, setForm }) {
     const handleChange = (e) => {
