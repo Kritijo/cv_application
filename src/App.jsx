@@ -121,26 +121,30 @@ function EducationalData({ form }) {
     }
 
     return (
-        <>
+        <div>
             <h2 className="education-heading">EDUCATION</h2>
             <div className="education">
-                <div>
-                    <p className="degree">
-                        <i>{form.degree}</i>
-                    </p>
-                    <p>{form.college}</p>
-                </div>
-                <div>
-                    <p>
-                        <i>
-                            {formatDateToMonthYear(form.from)} -{" "}
-                            {formatDateToMonthYear(form.to)}
-                        </i>
-                    </p>
-                    <p className="cgpa">CGPA: {form.cgpa}</p>
-                </div>
+                {form.map((education, idx) => (
+                    <div className="education-div" key={idx}>
+                        <div>
+                            <p className="degree">
+                                <i>{education.degree}</i>
+                            </p>
+                            <p>{education.college}</p>
+                        </div>
+                        <div>
+                            <p>
+                                <i>
+                                    {formatDateToMonthYear(education.from)} -{" "}
+                                    {formatDateToMonthYear(education.to)}
+                                </i>
+                            </p>
+                            <p className="cgpa">CGPA: {education.cgpa}</p>
+                        </div>
+                    </div>
+                ))}
             </div>
-        </>
+        </div>
     );
 }
 function ExperienceData({ form }) {
@@ -153,7 +157,7 @@ function ExperienceData({ form }) {
         });
     }
     return (
-        <>
+        <div>
             <h2 className="experience-heading">EXPERIENCE</h2>
             <div className="experience">
                 {form.map((exp, idx) => (
@@ -177,13 +181,13 @@ function ExperienceData({ form }) {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     );
 }
 
 function ProjectData({ form }) {
     return (
-        <>
+        <div>
             <h2 className="project-heading">PROJECTS</h2>
             <div className="project">
                 {form.map((project, index) => (
@@ -208,7 +212,7 @@ function ProjectData({ form }) {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     );
 }
 
@@ -236,13 +240,22 @@ function App() {
         email: "email@domain.com",
         linkedIn: "linkedIn",
     });
-    const [educationData, seteducationData] = useState({
-        degree: "Bachelor of Engineering, Computer Science",
-        college: "Example University",
-        from: "2021-08-01",
-        to: "2025-05-01",
-        cgpa: "8.9",
-    });
+    const [educationData, seteducationData] = useState([
+        {
+            degree: "Masters of Engineering, Computer Science",
+            college: "Example University",
+            from: "2021-08-01",
+            to: "2025-05-01",
+            cgpa: "9.1",
+        },
+        {
+            degree: "Bachelor of Engineering, Computer Science",
+            college: "Example University",
+            from: "2021-08-01",
+            to: "2025-05-01",
+            cgpa: "8.9",
+        },
+    ]);
     const [experienceData, setexperienceData] = useState([
         {
             role: "Software Engineer Intern",
@@ -268,7 +281,7 @@ function App() {
     const [projectData, setprojectData] = useState([
         {
             projectName: "E-commerce Store",
-            link: "wwww.github.com",
+            link: "www.github.com",
             description1:
                 "Developed an online store with a fully functional shopping cart, product search, and checkout process.",
             description2:

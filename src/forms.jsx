@@ -65,60 +65,69 @@ export function EducationForm({ form, setForm }) {
     };
 
     return (
-        <form>
-            <div>
-                <label htmlFor="college">College</label>
-                <input
-                    name="college"
-                    id="college"
-                    type="text"
-                    value={form.college}
-                    onChange={handleChange}
-                ></input>
-            </div>
-            <div>
-                <label htmlFor="degree">Degree</label>
-                <input
-                    name="degree"
-                    id="degree"
-                    type="text"
-                    value={form.degree}
-                    onChange={handleChange}
-                ></input>
-            </div>
-            <div>
-                <label htmlFor="cgpa">CGPA</label>
-                <input
-                    name="cgpa"
-                    id="cgpa"
-                    type="number"
-                    value={form.cgpa}
-                    onChange={handleChange}
-                ></input>
-            </div>
-            <div>
-                <label htmlFor="from">From</label>
-                <input
-                    name="from"
-                    id="from"
-                    type="date"
-                    autoComplete="off"
-                    value={form.from}
-                    onChange={handleChange}
-                ></input>
-            </div>
-            <div>
-                <label htmlFor="to">To</label>
-                <input
-                    name="to"
-                    id="to"
-                    type="date"
-                    autoComplete="off"
-                    value={form.to}
-                    onChange={handleChange}
-                ></input>
-            </div>
-        </form>
+        <>
+            {form.map((education, index) => (
+                <form key={index}>
+                    <div>
+                        <label htmlFor={`college-${index}`}>College</label>
+                        <input
+                            name="college"
+                            id="college"
+                            type="text"
+                            value={education.college}
+                            data-index={index}
+                            onChange={handleChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label htmlFor="degree">Degree</label>
+                        <input
+                            name="degree"
+                            id="degree"
+                            type="text"
+                            value={education.degree}
+                            data-index={index}
+                            onChange={handleChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label htmlFor="cgpa">CGPA</label>
+                        <input
+                            name="cgpa"
+                            id="cgpa"
+                            type="number"
+                            value={education.cgpa}
+                            data-index={index}
+                            onChange={handleChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label htmlFor="from">From</label>
+                        <input
+                            name="from"
+                            id="from"
+                            type="date"
+                            autoComplete="off"
+                            value={education.from}
+                            data-index={index}
+                            onChange={handleChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label htmlFor="to">To</label>
+                        <input
+                            name="to"
+                            id="to"
+                            type="date"
+                            autoComplete="off"
+                            value={education.to}
+                            data-index={index}
+                            onChange={handleChange}
+                        ></input>
+                    </div>
+                </form>
+            ))}
+        </>
     );
 }
 
@@ -126,7 +135,7 @@ export function ExperienceForm({ form, setForm }) {
     const addExperience = () => {
         setForm((prevForm) => [
             ...prevForm,
-            { company: "", position: "", description: "", from: "", to: "" },
+            { company: "", role: "", description: "", from: "", to: "" },
         ]);
     };
 
@@ -333,7 +342,7 @@ export function SkillsForm({ form, setForm }) {
                 value={form.technologies}
                 onChange={handleChange}
             ></input>
-            <label htmlFor="databases">Databses</label>
+            <label htmlFor="databases">databases</label>
             <input
                 name="databases"
                 id="databases"
