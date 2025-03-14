@@ -4,8 +4,16 @@ import education from "./assets/education.svg";
 import experience from "./assets/experience.svg";
 import plus from "./assets/plus.svg";
 import minus from "./assets/minus.svg";
+import app from "./assets/app.svg";
+import skills from "./assets/skills.svg";
 import "./App.css";
-import { PersonalForm, EducationForm, ExperienceForm } from "./forms.jsx";
+import {
+    PersonalForm,
+    EducationForm,
+    ExperienceForm,
+    ProjectForm,
+    SkillsForm,
+} from "./forms.jsx";
 
 function Button({
     name,
@@ -67,6 +75,22 @@ function HandleButtons({ formProps }) {
                 {...sharedProps}
                 form={formProps[2].form}
                 setForm={formProps[2].setForm}
+            />
+            <Button
+                name="Projects"
+                img={app}
+                formComponent={ProjectForm}
+                {...sharedProps}
+                form={formProps[3].form}
+                setForm={formProps[3].setForm}
+            />
+            <Button
+                name="Skills"
+                img={skills}
+                formComponent={SkillsForm}
+                {...sharedProps}
+                form={formProps[4].form}
+                setForm={formProps[4].setForm}
             />
         </>
     );
@@ -157,6 +181,54 @@ function ExperienceData({ form }) {
     );
 }
 
+function ProjectData({ form }) {
+    return (
+        <>
+            <h2 className="project-heading">PROJECTS</h2>
+            <div className="project">
+                {form.map((project, index) => (
+                    <div className="project-div" key={index}>
+                        <p className="projectName">
+                            <i>{project.projectName}</i>
+                            <a
+                                href={
+                                    project.link.startsWith("http")
+                                        ? project.link
+                                        : `https://${project.link}`
+                                }
+                                target="_blank"
+                            >
+                                (View Project)
+                            </a>
+                        </p>
+                        <ul>
+                            <li>{project.description1}</li>
+                            <li>{project.description2}</li>
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </>
+    );
+}
+
+function SkillsData({ form }) {
+    return (
+        <div className="skills">
+            <h2 className="skills-heading">SKILLS</h2>
+            <p>
+                <b>Languages:</b> {form.languages}
+            </p>
+            <p>
+                <b>Technologies/Frameworks:</b> {form.technologies}
+            </p>
+            <p>
+                <b>Databases:</b> {form.databases}
+            </p>
+        </div>
+    );
+}
+
 function App() {
     const [personalData, setPersonalData] = useState({
         name: "Your name",
@@ -193,11 +265,36 @@ function App() {
             to: "2022-09-10",
         },
     ]);
+    const [projectData, setprojectData] = useState([
+        {
+            projectName: "E-commerce Store",
+            link: "wwww.github.com",
+            description1:
+                "Developed an online store with a fully functional shopping cart, product search, and checkout process.",
+            description2:
+                "Integrated Stripe API for secure payments and MongoDB for product and order data storage.",
+        },
+        {
+            projectName: "Chat Application",
+            link: "www.github.com",
+            description1:
+                "Developed a real-time chat application using Socket.io and Express.js for seamless communication.",
+            description2:
+                "Added private messaging, group chats, and user presence indicators.",
+        },
+    ]);
+    const [skillsData, setskillsData] = useState({
+        languages: "Python, JavaScript, Java, SQL, C++",
+        technologies: "NodeJS, Express, ReactJS, Django",
+        databases: "PostgreSQL, MongoDB, MySQL",
+    });
 
     const formProps = [
         { form: personalData, setForm: setPersonalData },
         { form: educationData, setForm: seteducationData },
         { form: experienceData, setForm: setexperienceData },
+        { form: projectData, setForm: setprojectData },
+        { form: skillsData, setForm: setskillsData },
     ];
 
     return (
@@ -208,15 +305,11 @@ function App() {
                 <HandleButtons formProps={formProps} />
             </div>
             <div className="right">
-                <PersonalData form={personalData} setForm={setPersonalData} />
-                <EducationalData
-                    form={educationData}
-                    setForm={seteducationData}
-                />
-                <ExperienceData
-                    form={experienceData}
-                    setForm={setexperienceData}
-                />
+                <PersonalData form={personalData} />
+                <EducationalData form={educationData} />
+                <ExperienceData form={experienceData} />
+                <ProjectData form={projectData} />
+                <SkillsData form={skillsData} />
             </div>
         </div>
     );

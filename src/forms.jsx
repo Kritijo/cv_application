@@ -235,3 +235,6 @@ export function ExperienceForm({ form, setForm }) {
         </>
     );
 }
+
+export function ProjectForm({ form, setForm }) {}
+export function SkillsForm({ form, setForm }) {}
