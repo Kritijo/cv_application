@@ -237,4 +237,42 @@ export function ExperienceForm({ form, setForm }) {
 }
 
 export function ProjectForm({ form, setForm }) {}
-export function SkillsForm({ form, setForm }) {}
+
+export function SkillsForm({ form, setForm }) {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm((prevForm) => ({
+            ...prevForm,
+            [name]: value,
+        }));
+    };
+
+    return (
+        <form>
+            <label htmlFor="languages">Languages</label>
+            <input
+                name="languages"
+                id="languages"
+                type="text"
+                value={form.languages}
+                onChange={handleChange}
+            ></input>
+            <label htmlFor="technologies">Technologies/Frameworks</label>
+            <input
+                name="technologies"
+                id="technologies"
+                type="text"
+                value={form.technologies}
+                onChange={handleChange}
+            ></input>
+            <label htmlFor="databases">Databses</label>
+            <input
+                name="databases"
+                id="databases"
+                type="text"
+                value={form.databases}
+                onChange={handleChange}
+            ></input>
+        </form>
+    );
+}
