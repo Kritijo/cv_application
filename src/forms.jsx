@@ -72,7 +72,7 @@ export function EducationForm({ form, setForm }) {
                         <label htmlFor={`college-${index}`}>College</label>
                         <input
                             name="college"
-                            id="college"
+                            id={`college-${index}`}
                             type="text"
                             value={education.college}
                             data-index={index}
@@ -80,10 +80,10 @@ export function EducationForm({ form, setForm }) {
                         ></input>
                     </div>
                     <div>
-                        <label htmlFor="degree">Degree</label>
+                        <label htmlFor={`degree-${index}`}>Degree</label>
                         <input
                             name="degree"
-                            id="degree"
+                            id={`degree-${index}`}
                             type="text"
                             value={education.degree}
                             data-index={index}
@@ -91,10 +91,10 @@ export function EducationForm({ form, setForm }) {
                         ></input>
                     </div>
                     <div>
-                        <label htmlFor="cgpa">CGPA</label>
+                        <label htmlFor={`cgpa-${index}`}>CGPA</label>
                         <input
                             name="cgpa"
-                            id="cgpa"
+                            id={`cgpa-${index}`}
                             type="number"
                             value={education.cgpa}
                             data-index={index}
@@ -102,10 +102,10 @@ export function EducationForm({ form, setForm }) {
                         ></input>
                     </div>
                     <div>
-                        <label htmlFor="from">From</label>
+                        <label htmlFor={`from-${index}`}>From</label>
                         <input
                             name="from"
-                            id="from"
+                            id={`from-${index}`}
                             type="date"
                             autoComplete="off"
                             value={education.from}
@@ -114,10 +114,10 @@ export function EducationForm({ form, setForm }) {
                         ></input>
                     </div>
                     <div>
-                        <label htmlFor="to">To</label>
+                        <label htmlFor={`to-${index}`}>To</label>
                         <input
                             name="to"
-                            id="to"
+                            id={`to-${index}`}
                             type="date"
                             autoComplete="off"
                             value={education.to}
