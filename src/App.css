@@ -132,7 +132,7 @@ ul {
   margin-bottom: 20px;
 }
 
-@media screen and (max-width: 1070px) {
+@media screen and (max-width: 1200px) {
   .container {
     flex-direction: column;
   }
@@ -141,6 +141,15 @@ ul {
   }
   .right {
     align-self: center;
-    margin: 20px;
+    margin-top: 50px;
+  }
+}
+
+@media (max-width:600px){
+  .right{
+    width:300px;
+  }
+  .right, li{
+    font-size:x-small;
   }
 }
